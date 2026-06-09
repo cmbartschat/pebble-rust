@@ -48,13 +48,13 @@ pub fn window_destroy(window: *mut Window) {
     }
 }
 
-pub fn window_set_click_config_provider<T>(window: *mut Window, func: extern fn(*mut T)) {
+pub fn window_set_click_config_provider<T>(window: *mut Window, func: extern "C" fn(*mut T)) {
     unsafe {
         declarations::window_set_click_config_provider(window, intrinsics::transmute(func));
     }
 }
 
-pub fn window_set_click_config_provider_with_context<T>(window: *mut Window, func: extern fn(*mut T), ctx: *mut T) {
+pub fn window_set_click_config_provider_with_context<T>(window: *mut Window, func: extern "C" fn(*mut T), ctx: *mut T) {
     unsafe {
         declarations::window_set_click_config_provider_with_context(window,
                                                                 intrinsics::transmute(func),
@@ -102,7 +102,7 @@ pub fn window_get_root_layer(window: *mut Window) -> *mut Layer {
     }
 }
 
-pub fn window_single_click_subscribe<T>(button: u8, func: extern fn(*mut ClickRecognizer, *mut T)) {
+pub fn window_single_click_subscribe<T>(button: u8, func: extern "C" fn(*mut ClickRecognizer, *mut T)) {
     unsafe {
         declarations::window_single_click_subscribe(button, intrinsics::transmute(func));
     }
@@ -144,7 +144,7 @@ pub fn layer_mark_dirty(layer: *mut Layer) {
     }
 }
 
-pub fn layer_set_update_proc(layer: *mut Layer, func: extern fn(*mut Layer, *mut GContext)) {
+pub fn layer_set_update_proc(layer: *mut Layer, func: extern "C" fn(*mut Layer, *mut GContext)) {
     unsafe {
         declarations::layer_set_update_proc(layer, func);
     }
@@ -223,7 +223,7 @@ pub fn clock_is_24h_style() -> bool {
     }
 }
 
-pub fn tick_timer_service_subscribe(unit: TimeUnits, func: extern fn(*mut tm, TimeUnits)) {
+pub fn tick_timer_service_subscribe(unit: TimeUnits, func: extern "C" fn(*mut tm, TimeUnits)) {
     unsafe {
         declarations::tick_timer_service_subscribe(unit, func);
     }

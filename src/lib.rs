@@ -32,6 +32,6 @@ pub use pebble::*;
 static ALLOC: pebble::alloc::Allocator = pebble::alloc::Allocator;
 
 #[alloc_error_handler]
-pub fn error_handler(layout: core::alloc::Layout) -> ! {
+pub fn error_handler(_layout: core::alloc::Layout) -> ! {
     loop {}
 }
