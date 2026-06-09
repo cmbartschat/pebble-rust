@@ -30,20 +30,20 @@ unsafe impl GlobalAlloc for Allocator {
 
 #[no_mangle]
 extern "C" fn __rust_alloc(size: usize) -> *mut u8 {
-    unsafe {malloc(size)}
+    unsafe { malloc(size) }
 }
 
 #[no_mangle]
 extern "C" fn __rust_dealloc(ptr: *mut u8) {
-    unsafe {free(ptr)}
+    unsafe { free(ptr) }
 }
 
 #[no_mangle]
 extern "C" fn __rust_realloc(ptr: *mut u8, new_size: usize) -> *mut u8 {
-    unsafe {realloc(ptr, new_size)}
+    unsafe { realloc(ptr, new_size) }
 }
 
 #[no_mangle]
 extern "C" fn __rust_alloc_zeroed() -> *mut u8 {
-    unsafe {malloc(0)}
+    unsafe { malloc(0) }
 }
